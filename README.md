@@ -21,7 +21,7 @@ Here's what the script can set up for the asset every time you import a model or
  * Set texture to Single Channel type with selectable target channel based on suffix input
 
 ## Installation
-Simply grab the latest release or download the repo, then throw `AssetPreImporter` folder somewhere into your project's `Assets` folder. If everything's fine, you should see a new item under the "Tools" dropdown menu at the top of Unity editor called `Asset Preprocessor Settings`.
+Simply [grab the latest release](https://github.com/Rikketh/Unity-AssetPreImporter/releases/latest) or download the repo, then throw `AssetPreImporter` folder somewhere into your project's `Assets` folder. If everything's fine, you should see a new item under the "Tools" dropdown menu at the top of Unity editor called `Asset Preprocessor Settings`.
 
 # Credits
 This is a rework of [my soft fork](https://github.com/Rikketh/UnityVRAssetPreImporter) of [Hugo Zink](https://github.com/HugoZink)'s [UnityVRAssetImporter](https://github.com/HugoZink/UnityVRAssetPreImporter), thus obligatory links to precursors.
