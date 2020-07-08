@@ -70,7 +70,7 @@ namespace Rickter.Lavender.Tools.Assets {
             }
 
             if (ImporterSettings.SingleColorizeMaps) {
-                string[] tokens = ImporterSettings.LinearizationTargetSuffixes.Split(',');
+                string[] tokens = ImporterSettings.SingleColorTargetSuffixes.Split(',');
                 if (tokens.Any(x => Path.GetFileNameWithoutExtension(textureImporter.assetPath).EndsWith(x))) {
                     LogAction("Texture " + Path.GetFileName(textureImporter.assetPath) + " matches color filters, applying...");
 
