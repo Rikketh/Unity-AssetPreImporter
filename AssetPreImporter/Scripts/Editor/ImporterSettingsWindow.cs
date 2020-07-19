@@ -46,6 +46,11 @@ namespace Rickter.Lavender.Tools.Assets {
             GUILayout.Label("Model import settings", EditorStyles.boldLabel);
 
             ImporterSettings.BlendShapeNormals = (ImporterSettingsEnums.BlendShapeNormalsMode) EditorGUILayout.EnumPopup("BlendShape Normals", ImporterSettings.BlendShapeNormals);
+            ImporterSettings.TangentsMode = (ImporterSettingsEnums.ModelImportTangetAlgorithm) EditorGUILayout.EnumPopup("Tangents", ImporterSettings.TangentsMode);
+
+            ImporterSettings.ImportCameras = EditorGUILayout.Toggle("Keep cameras", ImporterSettings.ImportCameras);
+
+            ImporterSettings.KeepQuads = EditorGUILayout.Toggle("Keep quads", ImporterSettings.KeepQuads);
 
 
             EditorGUILayout.Space();

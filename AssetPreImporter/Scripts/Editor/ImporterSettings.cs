@@ -49,6 +49,71 @@ namespace Rickter.Lavender.Tools.Assets {
             }
         }
 
+        public static bool KeepQuads
+        {
+            get
+            {
+                return EditorPrefs.GetBool("PreProcessor_KeepQuads", false);
+            }
+            set
+            {
+                EditorPrefs.SetBool("PreProcessor_KeepQuads", value);
+            }
+        }
+
+        public static bool ImportCameras
+        {
+            get
+            {
+                return EditorPrefs.GetBool("PreProcessor_ImportCameras", false);
+            }
+            set
+            {
+                EditorPrefs.SetBool("PreProcessor_ImportCameras", value);
+            }
+        }
+
+        public static ImporterSettingsEnums.ModelImportTangetAlgorithm TangentsMode
+        {
+            get
+            {
+                string tangentsMode = EditorPrefs.GetString("PreProcessor_TangentsMode", "mikktspace");
+                switch (tangentsMode)
+                {
+                    case "mikktspace":
+                        return ImporterSettingsEnums.ModelImportTangetAlgorithm.PPXOrPVXMikk;
+                    case "keep":
+                        return ImporterSettingsEnums.ModelImportTangetAlgorithm.Keep;
+                    case "none":
+                        return ImporterSettingsEnums.ModelImportTangetAlgorithm.None;
+                    case "legacy":
+                        return ImporterSettingsEnums.ModelImportTangetAlgorithm.Legacy;
+                    default:
+                        return ImporterSettingsEnums.ModelImportTangetAlgorithm.PPXOrPVXMikk;
+                }
+            }
+            set
+            {
+                switch (value)
+                {
+                    case ImporterSettingsEnums.ModelImportTangetAlgorithm.PPXOrPVXMikk:
+                        EditorPrefs.SetString("PreProcessor_TangentsMode", "mikktspace");
+                        break;
+                    case ImporterSettingsEnums.ModelImportTangetAlgorithm.Keep:
+                        EditorPrefs.SetString("PreProcessor_TangentsMode", "keep");
+                        break;
+                    case ImporterSettingsEnums.ModelImportTangetAlgorithm.None:
+                        EditorPrefs.SetString("PreProcessor_TangentsMode", "none");
+                        break;
+                    case ImporterSettingsEnums.ModelImportTangetAlgorithm.Legacy:
+                        EditorPrefs.SetString("PreProcessor_TangentsMode", "legacy");
+                        break;
+                    default:
+                        throw new ArgumentException("Value must be one of: mikktpsace, keep, none or legacy");
+                }
+            }
+        }
+
         public static bool MIPMapsEnabled
         {
             get

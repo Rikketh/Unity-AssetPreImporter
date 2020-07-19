@@ -13,37 +13,35 @@ namespace Rickter.Lavender.Tools.Assets {
         void OnPreprocessModel()
         {
             // Check if this is the first import. If not, skip.
-            if(!assetImporter.importSettingsMissing)
-            {
-                return;
-            }
-
-            if (ImporterSettings.BlendShapeNormals == ImporterSettingsEnums.BlendShapeNormalsMode.Default)
-            {
-                // Default settings selected, don't do anything
+            if(!assetImporter.importSettingsMissing) {
                 return;
             }
 
             LogAction("First import of a model, changing import settings.");
 
+
             ModelImporter modelImporter = assetImporter as ModelImporter;
 
-            if (ImporterSettings.BlendShapeNormals == ImporterSettingsEnums.BlendShapeNormalsMode.Import)
-            {
-                // Enable import blendshape normals automatically
-                modelImporter.importBlendShapeNormals = ModelImporterNormals.Import;
+            if (ImporterSettings.BlendShapeNormals != ImporterSettingsEnums.BlendShapeNormalsMode.Default) {
+                if (ImporterSettings.BlendShapeNormals == ImporterSettingsEnums.BlendShapeNormalsMode.Import) {
+                    // Enable import blendshape normals automatically
+                    modelImporter.importBlendShapeNormals = ModelImporterNormals.Import;
+                } else if (ImporterSettings.BlendShapeNormals == ImporterSettingsEnums.BlendShapeNormalsMode.None) {
+                    // Disable blendshape normals automatically
+                    modelImporter.importBlendShapeNormals = ModelImporterNormals.None;
+                } else {
+                    // Set "legacy blend shapes" enabled automatically
+                    PropertyInfo legacyBlendShapeNormalsEnabled = modelImporter.GetType().GetProperty("legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes", BindingFlags.NonPublic | BindingFlags.Instance);
+                    legacyBlendShapeNormalsEnabled.SetValue(modelImporter, true);
+                }
             }
-            else if (ImporterSettings.BlendShapeNormals == ImporterSettingsEnums.BlendShapeNormalsMode.None)
-            {
-                // Disable blendshape normals automatically
-                modelImporter.importBlendShapeNormals = ModelImporterNormals.None;
-            }
-            else
-            {
-                // Set "legacy blend shapes" enabled automatically
-                PropertyInfo legacyBlendShapeNormalsEnabled = modelImporter.GetType().GetProperty("legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes", BindingFlags.NonPublic | BindingFlags.Instance);
-                legacyBlendShapeNormalsEnabled.SetValue(modelImporter, true);
-            }
+
+            // tesselating, are we?
+            modelImporter.keepQuads = ImporterSettings.KeepQuads;
+
+            modelImporter.importCameras = ImporterSettings.ImportCameras;
+
+            modelImporter.importTangents = (ModelImporterTangents) ImporterSettings.TangentsMode;
         }
 
         void OnPreprocessTexture()

@@ -1,18 +1,21 @@
 # Unity Asset Preprocessor
-A tool for your unity project to automate texture and model imports and settings.
+A tool for your unity project to automate texture and model imports and related settings.
 
-![Preview](https://i.imgur.com/NDVbm1v.png)
+![Preview](https://i.imgur.com/A0noT3d.png)
 
 ## Features
 Here's what the script can set up for the asset every time you import a model or a texture.
 
 #### Models:
- * BlendShape Normals
+ * BlendShape normals
+ * Tangent calculation/import algorithm
+ * Camera imports
+ * Quad retention
 
 #### Textures:
  * MIP-maps generation
    * MIP-map streaming
- * AlphaTransparency falgging
+ * AlphaTransparency flagging
  * Default texture size
  * Default texture compression
  * Crunch compression

@@ -16,6 +16,14 @@ namespace Rickter.Lavender.Tools.Assets {
             None
         }
 
+        public enum ModelImportTangetAlgorithm
+        {
+            None = ModelImporterTangents.None,
+            Keep = ModelImporterTangents.Import,
+            Legacy = ModelImporterTangents.CalculateLegacy,
+            PPXOrPVXMikk = ModelImporterTangents.CalculateMikk
+        }
+
         // Hacky workaround to show friendlier names in the menu
         public enum TextureCompressionQuality
         {
